@@ -57,7 +57,7 @@ public class TC01Activation extends testBase {
 	  
 	  //FAN info Page
       faninfopage = new FanInfoPage(driver);
-      faninfopage.EnterFanDetails(ereader.ReadExcel("FAN ID",1,1));
+      faninfopage.EnterFanDetails("0728326");
 	  
 	  //Customer Info Page
       CIPage = new CustomerInfoPage(driver);
