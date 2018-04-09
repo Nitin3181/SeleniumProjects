@@ -1,0 +1,34 @@
+package com.test.automation.ui.Automation.data;
+
+import java.sql.*;
+
+public class DataBaseConnector {
+	
+	
+	public void BDConnector()
+	{
+	try
+	{
+		
+	
+	Connection con = DriverManager.getConnection("jdbc:mySQL://localHost:8040/demo", "user", "password");
+	
+	Statement st = con.createStatement();
+	
+	ResultSet rs = st.executeQuery("select * from Employee");
+	
+	while(rs.next())
+	{
+		System.out.println(rs.getString(1));
+	}
+	
+	
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+
+}
+}
+
