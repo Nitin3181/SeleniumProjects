@@ -1,0 +1,56 @@
+package com.test.automation.ui.Automation.uiActions;
+
+
+import org.apache.log4j.Logger;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class HomePage {
+
+	public static final Logger log = Logger.getLogger(HomePage.class.getName());
+	WebDriver Driver;
+	
+	@FindBy(xpath=".//*[@id='header']/div[2]/div/div/nav/div[1]/a")
+	WebElement signin;
+	
+	@FindBy(xpath=".//*[@id='email']")
+	WebElement loginEmailAddress;
+	
+	@FindBy(xpath=".//*[@id='passwd']")
+	WebElement loginPassword;
+	
+	@FindBy(id="SubmitLogin")
+	WebElement submitbutton;
+	
+	@FindBy(xpath=".//*[@id='center_column']/div[1]/ol/li")
+	WebElement authenticationFailed;
+	
+	
+	
+	public HomePage(WebDriver Driver) {
+		// TODO Auto-generated constructor stub
+		PageFactory.initElements(Driver, this);
+	}
+
+	public void logintoApplication(String emailAddress,String password)
+	{
+		signin.click();
+		log.info("clicked on sign in and the object is :"+signin.toString());
+		loginEmailAddress.sendKeys(emailAddress);
+		log.info("entered email address :"+emailAddress.toString());
+		loginPassword.sendKeys(password);
+		log.info("entered password and the password is :"+password.toString());
+		submitbutton.click();
+		log.info("clicked on the submit button and object is :"+submitbutton.toString());
+	}
+	
+	public String getInvalidLoginText()
+	{
+		log.info("error message is :-"+authenticationFailed.getText());
+		return authenticationFailed.getText();
+		
+	}
+	
+}
