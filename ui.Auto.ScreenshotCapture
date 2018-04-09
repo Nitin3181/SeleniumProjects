@@ -1,0 +1,21 @@
+package com.test.automation.ui.Automation.ScreenShots;
+
+import java.io.File;
+
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+
+import com.test.automation.ui.Automation.testBase.testBase;
+
+public class ScreenShotCapture extends testBase {
+	
+	WebDriver driver;
+	
+	TakesScreenshot ss = (TakesScreenshot)driver;
+	File Source= ss.getScreenshotAs(OutputType.FILE);
+	//FileUtils.copyFile(Source,new File("C:/selenium/error.png"));
+	
+	
+
+}
