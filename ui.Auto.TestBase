@@ -1,0 +1,53 @@
+package com.test.automation.ui.Automation.testBase;
+
+import java.util.concurrent.TimeUnit;
+
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+
+
+
+public class testBase {
+	
+	public static final Logger log = Logger.getLogger(testBase.class.getName());
+
+	public WebDriver Driver;
+	String Browser = "chrome";
+	String URL = "http://automationpractice.com/index.php";
+	
+	public void init()
+	{
+		selectBrowser(Browser);
+		getURL(URL);
+		String log4jconfpath = "log4j.properties";
+		PropertyConfigurator.configure(log4jconfpath);
+	}
+	
+	public void selectBrowser(String Browser)
+	{
+		if(Browser.equalsIgnoreCase("firefox"))
+		{
+		System.setProperty("webdriver.firefox.marionette", System.getProperty("user.dir")+"/Drivers/geckodriver");
+		log.info("creating object of"+Browser);
+		Driver = new FirefoxDriver();
+		}
+		if(Browser.equalsIgnoreCase("Chrome"))
+		{
+			System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"/Drivers/chromedriver");
+			log.info("creating object of"+Browser);
+			Driver = new ChromeDriver();	
+		}
+	}
+	
+	public void getURL(String URL)
+	{
+		log.info("navigating to"+URL);
+		Driver.get(URL);
+		Driver.manage().window().maximize();
+		Driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+	}
+}
